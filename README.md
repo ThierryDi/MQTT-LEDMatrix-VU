@@ -8,8 +8,7 @@
 * Port the entire code to platformio
 * Replace custom webpage for driving the panel option by mqtt integration following Homeassistant scheme
 
-# Original README
-
+# Original README
 **IMPORTANT: For now, the code will only work with ESP32 core 1.0.6, and is unreliable on 2.0.0. I'm thinking this is a FastLED issue, but I might be wrong on that! Use the boards manager to revert to 1.0.6 in order to compile and upload.**
 
 This is the repository for a 3D-printed, (optionally) battery-powered, WS2812B LED matrix that produces pretty patterns using audio input from an INMP441 digital microphone and running on an ESP32. Watch the explanatory video at the YouTube link below:
