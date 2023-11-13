@@ -40,12 +40,14 @@
  */
 
 #include <Arduino.h>
-#include "audio_reactive.h"
+#include <ArduinoOTA.h>
+#include <audio_reactive.h>
 #include <FastLED.h>
 #include <LEDMatrix.h>
-// #include <LEDText.h>
 #include <FontMatrise.h>
 #include <EEPROM.h>
+
+#include <mqtt_client.h>
 
 // put function declarations here:
 void drawPatterns(uint8_t band);
@@ -114,8 +116,10 @@ void setup() {
   FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds[0], NUM_LEDS);
   Serial.begin(57600);
 
-  //setupWebServer();
+
   setupAudio();
+  setupMQTT();
+  ArduinoOTA.begin();
 
   if (M_WIDTH == 8) numBands = 8;
   else numBands = 16;
@@ -146,6 +150,9 @@ void setup() {
 }  
 
 void loop() {
+
+  ArduinoOTA.handle();
+
   if (pattern != 5) FastLED.clear();
   
   uint8_t divisor = 1;                                                    // If 8 bands, we need to divide things by 2
