@@ -1,6 +1,7 @@
 # ESP32-INMP441-Matrix-VU
 
 ## Status and fork goal
+
 ** Nov 2023: start of the project, no working version yet !!
 ** Goal of the fork
 * Port the entire code to platformio
