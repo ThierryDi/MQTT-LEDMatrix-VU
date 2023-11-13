@@ -1,9 +1,9 @@
 # ESP32-INMP441-Matrix-VU
 
-## Status and fork goal
+## Status and fork goal
 
-** Nov 2023: start of the project, no working version yet !!
-** Goal of the fork
+**Nov 2023: start of the project, no working version yet !!**
+**Goal of the fork**
 * Port the entire code to platformio
 * Replace custom webpage for driving the panel option by mqtt integration following Homeassistant scheme
 
