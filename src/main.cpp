@@ -39,6 +39,23 @@
  * Audio and mic  Andrew Tuline et al     https://github.com/atuline/WLED
  */
 
+/*
+* Effect configuration variables
+* ------------------------------
+* pattern: 0 to 5
+* * 0: rainbowBars
+* * 1: outrunPeak
+* * 2: purpleBars
+* * 3: centerBars
+* * 4: changingBars
+* * 5: Waterfall
+* brightness: 0 to 255
+* gain: 0 to 30
+* squelch: 0 to 30
+* autoChangePatterns: true or false
+* displayTime (seconds): 0 to 65535
+*/
+
 #include <Arduino.h>
 #include <ArduinoOTA.h>
 #include <audio_reactive.h>
@@ -47,7 +64,7 @@
 #include <FontMatrise.h>
 #include <EEPROM.h>
 
-#include <mqtt_client.h>
+#include <mqtt_handler.h>
 
 // put function declarations here:
 void drawPatterns(uint8_t band);
@@ -79,7 +96,7 @@ uint8_t brightness;
 uint16_t displayTime;
 bool autoChangePatterns = false;
 
-cLEDMatrix<M_WIDTH, M_HEIGHT, HORIZONTAL_ZIGZAG_MATRIX> leds;
+cLEDMatrix<M_WIDTH, M_HEIGHT, HORIZONTAL_MATRIX> leds;
 // cLEDText ScrollingMsg;
 
 uint8_t peak[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -118,7 +135,8 @@ void setup() {
 
 
   setupAudio();
-  setupMQTT();
+  sendDiscoveryMessage();
+
   ArduinoOTA.begin();
 
   if (M_WIDTH == 8) numBands = 8;
